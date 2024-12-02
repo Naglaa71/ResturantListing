@@ -4,14 +4,11 @@ import com.startup.resturantLitsing.dto.ResturantDto;
 import com.startup.resturantLitsing.entity.Resturant;
 import com.startup.resturantLitsing.mapper.ResturantMapper;
 import com.startup.resturantLitsing.repo.ResturantRepo;
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +17,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class RestaurantServiceTest {
+class RestaurantServiceTest {
 
     @Mock
     ResturantRepo restaurantRepo;
@@ -30,11 +27,11 @@ public class RestaurantServiceTest {
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.openMocks(this); //in order for Mock and InjectMocks annotations to take effect, you need to call MockitoAnnotations.openMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testFindAllRestaurants() {
+    void testFindAllRestaurants() {
         // Create mock restaurants
         List<Resturant> mockRestaurants = Arrays.asList(
                 new Resturant(1, "Restaurant 1", "Address 1", "city 1", "Desc 1"),
@@ -57,7 +54,7 @@ public class RestaurantServiceTest {
     }
 
     @Test
-    public void testAddRestaurantInDB() {
+    void testAddRestaurantInDB() {
         // Create a mock restaurant to be saved
         ResturantDto mockRestaurantDTO = new ResturantDto(1, "Restaurant 1", "Address 1", "city 1", "Desc 1");
         Resturant mockRestaurant = ResturantMapper.INSTANCE.resturnatDtoToResturant(mockRestaurantDTO);
@@ -76,7 +73,7 @@ public class RestaurantServiceTest {
     }
 
     @Test
-    public void testFetchRestaurantById_ExistingId() {
+    void testFetchRestaurantById_ExistingId() {
         // Create a mock restaurant ID
         Integer mockRestaurantId = 1;
 
@@ -102,15 +99,12 @@ public class RestaurantServiceTest {
     }
 
     @Test
-    public void testFetchRestaurantById_NonExistingId() {
+    void testFetchRestaurantById_NonExistingId() {
         // Create a mock non-existing restaurant ID
         Integer mockRestaurantId = 1;
 
         // Mock the repository behavior
         when(restaurantRepo.findById(mockRestaurantId)).thenReturn(Optional.empty());
-
-        // Call the service method
-        ResturantDto response = null;
 
         Exception thrown = assertThrows(
                 Exception.class,

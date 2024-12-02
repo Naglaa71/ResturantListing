@@ -19,7 +19,7 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RestaurantControllerTest {
+class RestaurantControllerTest {
 
     @InjectMocks
     ResturantController restaurantController;
@@ -29,11 +29,11 @@ public class RestaurantControllerTest {
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.openMocks(this); //in order for Mock and InjectMocks annotations to take effect, you need to call MockitoAnnotations.openMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testFetchAllRestaurants(){
+    void testFetchAllRestaurants(){
         // Mock the service behavior
         List<ResturantDto> mockRestaurants = Arrays.asList(
                 new ResturantDto(1, "Restaurant 1", "Address 1", "city 1", "Desc 1"),
@@ -53,7 +53,7 @@ public class RestaurantControllerTest {
     }
 
     @Test
-    public void testSaveRestaurant() {
+    void testSaveRestaurant() {
         // Create a mock restaurant to be saved
         ResturantDto mockRestaurant =  new ResturantDto(1, "Restaurant 1", "Address 1", "city 1", "Desc 1");
         Resturant resturant = ResturantMapper.INSTANCE.resturnatDtoToResturant(mockRestaurant);
@@ -72,7 +72,7 @@ public class RestaurantControllerTest {
     }
 
     @Test
-    public void testFindRestaurantById() {
+    void testFindRestaurantById() {
         // Create a mock restaurant ID
         Integer mockRestaurantId = 1;
 
